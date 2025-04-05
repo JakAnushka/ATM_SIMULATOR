@@ -1,0 +1,33 @@
+{% extends "base.html" %} {% block content %}
+
+
+  <!--TODO: Make a GET request to the /download path-->
+  <div class="box">
+
+      {%if operation=="withdraw"%}
+      <h1 class="title">WithDraw</h1>
+    <form action="{{ url_for('withdraw') }}" method="post">
+    	<input type="text" name="amount" placeholder="Amount" required="required" />
+        <input type="password" name="password" placeholder="Pin" required="required" />
+        <button type="submit" class="btn btn-primary btn-block btn-large">Confirm</button>
+    </form>
+      {%elif operation=="deposit"%}
+      <h1 class="title">Deposit</h1>
+      <form action="{{ url_for('deposit') }}" method="post">
+    	<input type="text" name="amount" placeholder="Amount" required="required" />
+        <input type="password" name="password" placeholder="Pin" required="required" />
+        <button type="submit" class="btn btn-primary btn-block btn-large">Confirm</button>
+    </form>
+      </div>
+      {%else%}
+<form action="{{ url_for('balance') }}" method="post">
+      <h1 class="title" >Balance</h1>
+<div class="mt-5" style="color:powderblue;width:400px">
+      <h3 class="mb-5">Username : {{data.name}}</h3>
+      <h3>Your Current balance : {{data.amount}}</h3>
+<button type="submit" class="btn btn-primary btn-block btn-large">Home</button>
+      {% endif %}
+</form>
+</div>
+
+{% endblock %}
